@@ -1,0 +1,11 @@
+Tiles.png
+x,x x,x x,x x,x x,x x,x x,x x,x x,x x,x
+x,x x,x x,x x,x x,x x,x x,x x,x x,x x,x
+x,x x,x x,x x,x x,x x,x x,x x,x x,x x,x
+x,x x,x x,x x,x x,x x,x x,x x,x x,x x,x
+x,x x,x x,x x,x x,x x,x x,x x,x x,x x,x
+x,x x,x x,x x,x x,x x,x x,x x,x x,x x,x
+x,x x,x x,x x,x x,x x,x x,x x,x x,x x,x
+x,x x,x x,x x,x x,x x,x x,x x,x x,x x,x
+x,x x,x x,x x,x x,x x,x x,x x,x x,x x,x
+x,x x,x x,x x,x x,x x,x x,x x,x x,x x,x
