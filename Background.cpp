@@ -1,6 +1,6 @@
 #include "Background.h"
 
-Background::Background()
+Background::Background(RenderWindow *window)
 {
 	/*rect.setPosition(sf::Vector2f(0.0f, 635.0f));
 	rect.setSize(sf::Vector2f(740.0f, 90.0f));
@@ -39,8 +39,8 @@ Background::Background()
 	tilesTex->loadFromFile("Tiles.png");
 	
 	tiles.setTexture(*tilesTex);
-	tiles.setPosition(Vector2f(64, 656.0f));
-	tiles.setTextureRect(IntRect(0.0f, 0.0f, 64.0f, 64.0f));
+	tiles.setPosition(Vector2f(64.0f, 656.0f));
+	tiles.setTextureRect(IntRect(0, 0, 64, 64));
 	tiles.setScale(2.0f, 2.0f);
 
 	enemyTex[0].loadFromFile("Gfx/Bee.png");
@@ -50,6 +50,28 @@ Background::Background()
 	enemyTex[1].loadFromFile("Gfx/Bee2.png");
 	enemy[1].setTexture(enemyTex[1]);
 	enemy[1].setPosition(sf::Vector2f(0.0f, 0.0f));
+	enemy[0].move(0.0f, -2.0f);
+
+	// Loading the ladder texture to the memory
+	ladderTex.loadFromFile("Gfx/Drabina.png");
+
+	ladder.setTexture(ladderTex);
+	ladder.setPosition(sf::Vector2f(735.0f, 450.0f));
+	ladder.setScale(sf::Vector2f(1.0f, 1.0f));
+}
+
+bool Background::Collision(Sprite &sprite)
+{
+	// If there is a collision return true;
+	// else return false;
+	if (playerSprite.getGlobalBounds().intersects(sprite.getGlobalBounds()))
+	{
+		cout << "There is a collision!\n";
+		return true;
+	}
+
+	cout << "There is not a collision!\n";
+	return false;
 }
 
 void Background::Draw(RenderWindow* window)
@@ -63,6 +85,8 @@ void Background::Draw(RenderWindow* window)
 	{
 		window->draw(enemy[i]);
 	}
+
+	window->draw(ladder);
 
 	window->draw(rect);
 	window->draw(rect2);

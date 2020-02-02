@@ -10,13 +10,8 @@ MainGame::MainGame(float posX, float posY)
 	mFont = new Font();
 	mFont->loadFromFile("fonts/cour.ttf");
 
-	scores = 0;
-
-	stringstream str;
-	str << scores;
-
 	mScore.setFont(*mFont);
-	mScore.setString("Score: " + to_string(scores));
+	mScore.setString("Score: ");
 	mScore.setCharacterSize(36);
 	mScore.setFillColor(Color(255, 255, 255));
 	mScore.setOutlineColor(Color(0, 0, 0));
@@ -33,19 +28,19 @@ MainGame::MainGame(float posX, float posY)
 	mTime.setOutlineColor(Color(0, 0, 0));
 	mTime.setOutlineThickness(3.0f);
 	mTime.setPosition(0.0f, 50.0f);
+
+	scores = 0;
 }
 
-void MainGame::Update(int frame)
+void MainGame::Update(float dt)
 {
-	frame++;
-	if (frame % 20)
-	{
-		scores++;
-	}
+	player.Movement(dt);
 }
 
 void MainGame::Draw(RenderWindow* window)
 {
 	window->draw(mScore);
 	window->draw(mTime);
+
+	player.Draw(window);
 }

@@ -9,17 +9,24 @@ int main()
 	RenderWindow window(VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Jake the man");
 	window.setFramerateLimit(60);
 
-	sf::View view(sf::FloatRect(0, 0, 1280, 768));
-	window.setView(view);
-
 	// ------------------ SET UP A MAIN GAME ---------------------
 	MainGame mainGame(0.0f, 0.0f);
-	Background bg;
+	Background bg(&window);
 	Player player;
-	
+
+	//--------------------- SET UPO THE CLOCK ---------------------
+	sf::Clock clock;
+
+	float deltaTime = 0;
+	float time = 0;
+	float timeElapsed = clock.getElapsedTime().asSeconds();
+	float FPS;
+
 	// ------------------ GAME LOOP ---------------------
 	while (window.isOpen())
 	{
+		deltaTime++;
+
 		Event ev;
 		while (window.pollEvent(ev))
 		{
@@ -35,7 +42,7 @@ int main()
 				case sf::Keyboard::Return:
 					break;
 				case sf::Event::KeyReleased:
-					player.GetJumpState(false);
+					mainGame.IsPlayerJump(player, false);
 					break;
 				case sf::Keyboard::Escape:
 					window.close();
@@ -45,16 +52,20 @@ int main()
 			}
 
 		}
-		player.Movement();
 
-		//mainGame.Update();
+		mainGame.Update(deltaTime);
+
 		window.clear();
 
 		bg.Draw(&window);
 		mainGame.Draw(&window);
-		player.Draw(&window);
 
 		window.display();
+
+		timeElapsed = clock.restart().asSeconds();
+		deltaTime = timeElapsed - time;
+		FPS = 1.0f / deltaTime;
+		time = timeElapsed;
 	}
 
 	return 0;

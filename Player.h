@@ -6,25 +6,43 @@ class Player
 public:
 	Player();
 
-	void Movement();
+	bool isJumping(bool isJump) { return isJump; }
+	void Movement(float dt);
 	void Draw(sf::RenderWindow* window);
-	bool GetJumpState(bool isJump) { return isJump; }
-	
+
 private:
-	sf::Texture playerTex;
-	sf::Sprite playerSprite;
+	// Player images
+	Texture playerTex;
+	Sprite playerSprite;
 
 	Vector2f playerPosition;
+	Vector2f velocity;
 
-	float moveSpeed = 4.0f;
-	float jumpSpeed = 7.0f;
-	float gravitySpeed = 0.7f;
+	// Player variable in the game
+	int hp;
+	int hpMax;
 
-	float groundHeight = 570.0f;
-	float groundWidth = 742.0f;
-	
+	// Player movement variable
+	Clock clock;
+
+	float dt;
+	float moveSpeed;
+	float jumpSpeed;
+	float gravitySpeed;
+
+	//Player flags is player somewhere on the game
 	bool onGround;
 	bool isJump;
-	sf::Vector2f velocity;
+
+	// Camera view
+	Vector2f viewPosition;
+
+	// Game timing
+	//Clock clock;
+	View view;
+
+	// Ground variable
+	float groundHeight;
+	float groundWidth;
 };
 
